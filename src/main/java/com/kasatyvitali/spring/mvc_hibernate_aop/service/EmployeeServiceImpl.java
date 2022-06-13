@@ -16,7 +16,7 @@ public class EmployeeServiceImpl implements EmployeeService{
 	private EmployeeDAO employeeDAO;
 
 	@Override
-	@Transactional //Передаёт Spring'у ответственность за открытие/закрытие
+	@Transactional //Передаёт Spring'у ответственность за работу с транзакциями
 	public List<Employee> getAllEmployees() {		
 		return employeeDAO.getAllEmployees();
 	}
@@ -31,6 +31,12 @@ public class EmployeeServiceImpl implements EmployeeService{
 	@Transactional
 	public Employee getEmployee(int id) {		
 		return employeeDAO.getEmployee(id);
+	}
+
+	@Override
+	@Transactional
+	public void deleteEmployee(int id) {		
+		employeeDAO.deleteEmployee(id);
 	}
 
 }

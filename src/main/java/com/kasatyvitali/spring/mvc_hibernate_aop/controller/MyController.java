@@ -43,7 +43,8 @@ public class MyController {
 		
 		employeeService.saveEmployee(employee);
 		
-		return "redirect:/";
+		//переброс на маппинг("/")
+		return "redirect:/"; 
 	}
 	
 	@RequestMapping("/updateInfo")
@@ -53,6 +54,15 @@ public class MyController {
 		model.addAttribute("employee", employee);
 		
 		return "employee-info";		
+	}
+	
+	//@RequestParam("empId") int id - получает параметр с прошлой View
+	@RequestMapping("/deleteEmployee")
+	public String deleteEmployee(@RequestParam("empId") int id) {
+		
+		employeeService.deleteEmployee(id);
+		
+		return "redirect:/";
 	}
 
 }

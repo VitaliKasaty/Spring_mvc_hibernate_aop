@@ -21,6 +21,11 @@
 		<c:url var="updateButton" value="/updateInfo">	
 			<c:param name="empId" value="${emp.id}"/>
 		</c:url>
+		
+		<!-- Также и для удаления. deleteButton лишь название переменной-->
+		<c:url var="deleteButton" value="/deleteEmployee">	
+			<c:param name="empId" value="${emp.id}"/>
+		</c:url>
 	
 		<tr> <!-- th - table row строки таблицы, проходим циклом по записям и добавляем строки -->
 			<td>${emp.name} </td> <!-- td - table data -->
@@ -28,8 +33,11 @@
 			<td>${emp.department} </td>
 			<td>${emp.salary} </td>	
 			<td>
-				<input type="button" value="update"
+				<input type="button" value="Update"
 				onclick = "window.location.href = '${updateButton}'"/>
+
+				<input type="button" value="Delete"
+				onclick = "window.location.href = '${deleteButton}'"/>
 			</td>	
 		</tr>		
 	
