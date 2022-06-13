@@ -20,21 +20,37 @@ public class EmployeeDAOImpl implements EmployeeDAO{
 	
 	@Override
 	@Transactional //Передаёт Spring'у ответственность за открытие/закрытие транзакций
-	public List<Employee> getAllEmployees() {		
+	public List<Employee> getAllEmployees() {	
+		
 		Session session = sessionFactory.getCurrentSession();
 		
 		//Query<Employee> query = session.createQuery("from Employee", Employee.class);
 		//List<Employee> allEmployees = query.getResultList();		
 		//Более короткий вариант получения списка из БД
 		List<Employee> allEmployees = session.createQuery("from Employee", Employee.class)
-				.getResultList();		
+				.getResultList();	
+		
 		return allEmployees;
 	}
 
 	@Override
-	public void saveEmployee(Employee employee) {		
+	public void saveEmployee(Employee employee) {	
+		
 		Session session = sessionFactory.getCurrentSession();
-		session.save(employee);		
+		//saveOrUpdate - если поступает работник с существующим id, то строка в БД переписывает
+		//иначе - добавляется новая запись
+		//в нашем случае при заполнении анкеты нового сотрудника его id не вводится
+		//а автоматически присваивается id=0(равно новый сотрудник) и hibernate сам добавит юзера в базу
+		session.saveOrUpdate(employee);		
+	}
+
+	@Override
+	public Employee getEmployee(int id) {
+		
+		Session session = sessionFactory.getCurrentSession();
+		Employee employee = session.get(Employee.class, id);
+		
+		return employee;
 	}
 
 }
