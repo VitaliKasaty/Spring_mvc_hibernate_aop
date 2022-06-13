@@ -44,7 +44,7 @@
         </property>
     </bean>
 
-<!-- Регулирует работу транзакций. Чтобы постоянной не открывать/закрывать транзакции -->
+	<!-- Регулирует работу транзакций. Чтобы постоянной не открывать/закрывать транзакции -->
     <bean id="transactionManager"
           class="org.springframework.orm.hibernate5.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory"/>
@@ -52,11 +52,4 @@
 
     <tx:annotation-driven transaction-manager="transactionManager" />
 
-
 </beans>
-
-
-
-
-
-

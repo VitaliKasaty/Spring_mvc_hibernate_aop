@@ -17,9 +17,14 @@ public class EmployeeServiceImpl implements EmployeeService{
 
 	@Override
 	@Transactional //Передаёт Spring'у ответственность за открытие/закрытие
-	public List<Employee> getAllEmployees() {
-		
+	public List<Employee> getAllEmployees() {		
 		return employeeDAO.getAllEmployees();
+	}
+
+	@Override
+	@Transactional
+	public void saveEmployee(Employee employee) {
+		employeeDAO.saveEmployee(employee);		
 	}
 
 }
