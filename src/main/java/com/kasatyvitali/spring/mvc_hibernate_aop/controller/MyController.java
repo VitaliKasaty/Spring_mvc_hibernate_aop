@@ -9,17 +9,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kasatyvitali.spring.mvc_hibernate_aop.dao.EmployeeDAO;
 import com.kasatyvitali.spring.mvc_hibernate_aop.entity.Employee;
+import com.kasatyvitali.spring.mvc_hibernate_aop.service.EmployeeService;
 
 @Controller
 public class MyController {
 	
 	@Autowired
-	private EmployeeDAO employeeDao;
+	private EmployeeService employeeService;
 	
 	@RequestMapping("/")
 	public String showAllEmployees(Model model) {
 		
-		List<Employee> allEmployees = employeeDao.getAllEmployees();
+		List<Employee> allEmployees = employeeService.getAllEmployees();
 		model.addAttribute("allEmps", allEmployees);
 		
 		return "all-employees";
